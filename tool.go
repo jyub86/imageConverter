@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"os"
 	"regexp"
 )
@@ -22,9 +23,12 @@ func FindSeqPad(str string) string {
 
 // check file exists
 func Exists(name string) bool {
-	if _, err := os.Stat(name); err != nil {
+	_, err := os.Stat(name)
+	if err != nil {
 		if os.IsNotExist(err) {
 			return false
+		} else {
+			log.Fatal(err)
 		}
 	}
 	return true
